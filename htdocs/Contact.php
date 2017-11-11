@@ -1,14 +1,24 @@
- <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="background.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  </head>
-
+ 
 <?php
 include_once('navbar.php');
 ?>
+
+<body>
+      <form name = 'aboutForm'>
+		<h2>&nbsp;&nbsp;&nbsp;Key To Happiness Rescue</h2><br />
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:Keytohappinessrescue@gmail.com </p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website:http://www.kthr.org/ </p>
+
+		</div>
+      </form>
+ 
+   </body>
+</html>

@@ -1,0 +1,14 @@
+html { 
+  background: url(images/team.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* the actual 'watermark' */
+
+	top: 0; /* or whatever */
+	left: 0; /* or whatever, position according to taste */
+	opacity: 0.75; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+	filter:alpha(opacity=75); /* for <= IE 8 */
+
+}

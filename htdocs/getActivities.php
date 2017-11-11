@@ -15,24 +15,15 @@
 	
    
    // Retrieve data from Query String
-   $fullName = $_GET['fName'];
+   $Activity = $_GET['Activity'];
 
-   //$lName = $_GET['lName'];
-   if($fullName != "")
+   if($Activity != "")
    {
-	   $nameParts = explode(" ",$fullName);
-	   $fName = $nameParts[0];
-	   $lName = $nameParts[1];
-	   
-	   // Escape User Input to help prevent SQL Injection
-	   //$fName = mysql_real_escape_string($fName);
-	   //$lName = mysql_real_escape_string($lName);
-	   
 	   //build query
-	   $sql = "SELECT CONCAT(first_name, ' ', last_name) as name, email FROM volunteer INNER JOIN address addr ON addr.address_id = v.address_id WHERE first_name = '".$fName."' AND last_name = '".$lName."'";
+	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id AND s.name = '".$Activity."';";
    }
-   else{
-	   $sql = "SELECT CONCAT(first_name, ' ', last_name) as name, email, phone FROM volunteer v INNER JOIN address addr ON addr.address_id = v.address_id";
+   else{  
+	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND p.activities_id = s.activities_id AND v.address_id = a.address_id;";
    }
    //Execute query
    $result = $conn->query($sql);;
@@ -42,8 +33,8 @@
 	   //Build Result String
 	   $display_string = "<table>";
 	   $display_string .= "<tr>";
-	   $display_string .= "<th align=\"left\">sel</th>";
-	   $display_string .= "<th align=\"left\">name</th>";
+	   $display_string .= "<th align=\"left\">activity</th>";
+	   $display_string .= "<th align=\"left\">contact</th>";
 	   $display_string .= "<th align=\"left\">phone</th>";
 	   $display_string .= "<th align=\"left\">email</th>";
 	   $display_string .= "</tr>";
@@ -51,7 +42,7 @@
 	   // Insert a new row in the table for each person returned
 	   while($row = $row = $result->fetch_assoc()) {
 		  $display_string .= "<tr>";
-		  $display_string .= "<td><input type=\"checkbox\" name=\"volSel\" value=\"checked\" /></td>";
+		  $display_string .= "<td>$row[description]</td>";
 		  $display_string .= "<td>$row[name]</td>";
 		  $display_string .= "<td>$row[phone]</td>";
 		  $display_string .= "<td>$row[email]</td>";
