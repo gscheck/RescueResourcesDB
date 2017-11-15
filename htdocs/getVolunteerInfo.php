@@ -12,35 +12,46 @@
 		echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
 		exit;
 	}
-	
-   
-   // Retrieve data from Query String
-   $fullName = $_GET['fName'];
 
-   //$lName = $_GET['lName'];
-   if($fullName != "")
+   // Retrieve data from Query String
+   $fQuery = $_GET['fQuery'];
+   $fName = "";
+
+   if($fQuery != "")
    {
-	   $nameParts = explode(" ",$fullName);
+	   $queryParts = explode(";", $fQuery);
+	   $fullName = $queryParts[0];
+	   $nameParts = explode(" ", $fullName);
 	   $fName = $nameParts[0];
 	   $lName = $nameParts[1];
+	   $zipCode = $queryParts[1];
+	   $postQuery = "";
 	   
-	   // Escape User Input to help prevent SQL Injection
-	   //$fName = mysql_real_escape_string($fName);
-	   //$lName = mysql_real_escape_string($lName);
+	   echo $postQuery;
+	   
+	   if($fName != "")
+	      $postQuery .=  "WHERE first_name = '".$fName."' AND last_name = '".$lName."' ";
+	   
+	   if($zipCode != "")
+		  $postQuery .= "AND zipcode = '".$zipCode."' ";
+	   
+	   $postQuery .= ";";
+	   
 	   
 	   //build query
-	   $sql = "SELECT CONCAT(first_name, ' ', last_name) as name, email FROM volunteer INNER JOIN address addr ON addr.address_id = v.address_id WHERE first_name = '".$fName."' AND last_name = '".$lName."'";
+	   $sql = "SELECT CONCAT(first_name, ' ', last_name) as name, email, phone FROM volunteer v INNER JOIN address addr ON addr.address_id = v.address_id ".$postQuery;
    }
    else{
 	   $sql = "SELECT CONCAT(first_name, ' ', last_name) as name, email, phone FROM volunteer v INNER JOIN address addr ON addr.address_id = v.address_id";
    }
+   
    //Execute query
-   $result = $conn->query($sql);;
+   $result = $conn->query($sql);
 
 	if($result)
 	{	
 	   //Build Result String
-	   $display_string = "<table>";
+	   $display_string = "<table width = 800 style=\"margin-top:10px; margin-left:20px;\">";
 	   $display_string .= "<tr>";
 	   $display_string .= "<th align=\"left\">sel</th>";
 	   $display_string .= "<th align=\"left\">name</th>";

@@ -1,6 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="background2.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -51,9 +52,9 @@ include_once('navbar.php');
                var fName = document.getElementById('firstName').value;
                var lName = document.getElementById('lastName').value;
                var fullName = fName + " " + lName;
-               var queryString =  "?fName=" + fullName;
+			   var zipCode = document.getElementById('zipCode').value;
+               var queryString =  "?fQuery=" + fullName + ";" + zipCode;
 
-               //ajaxRequest.open("GET", "getVolunteerInfo.php" + queryString, true);
 			   ajaxRequest.open("GET", "getVolunteerInfo.php" + queryString, true);
                ajaxRequest.send(null); 
             }
@@ -103,8 +104,7 @@ include_once('navbar.php');
                var volInfo = fName + " " + lName + "," + phoneNum + "," + emailAddr + "," + state + "," + zipCode;
                var queryString =  "?volInfo=" + volInfo;
 
-               //ajaxRequest.open("GET", "getVolunteerInfo.php" + queryString, true);
-			   ajaxRequest.open("GET", "editVolunteer.php" + queryString, true);
+			   ajaxRequest.open("GET", "addVolunteer.php" + queryString, true);
                ajaxRequest.send(null); 
             }
          //-->
@@ -113,7 +113,7 @@ include_once('navbar.php');
       <form name = 'adminForm'>
 		 <h2>Volunteer</h2><br />
 		 
-		<table>
+		<table style="margin-top:10px; margin-left:20px;">
 			<tr>
 				<td><label for="firstName" align = 'right'>First Name:</label></td>
 				<td><input type = 'text' id = 'firstName' /></td>
@@ -141,7 +141,7 @@ include_once('navbar.php');
 		</table><br />
 	
  
-		<input type = 'button' onclick = 'addVolunteer()' value = 'Add'/>	
+		<input type = 'button' onclick = 'addVolunteer()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
         <input type = 'button' onclick = 'listVolunteers()' value = 'List'/>
 			
       </form>

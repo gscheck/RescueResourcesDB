@@ -13,15 +13,26 @@
 		exit;
 	}
 	
-   
    // Retrieve data from Query String
-   $zipCode = $_GET['fZipCode'];
+   $fQuery = $_GET['fQuery'];
 
-   if($zipCode != "")
+   if($fQuery != "")
    {
+	   $queryParts = explode(";", $fQuery);
+	   $zipCode = $queryParts[0];
+	   $description = $queryParts[1];
+	   $postQuery = "";
+	   
+	   if($zipCode != "")
+			$postQuery = "AND zipcode = '".$zipCode."' ";
+		
+	   if($description != "" && $description != "All")
+			$postQuery .= "AND description = '".$description."'";
+	   
+	   $postQuery .= ";";
 	   
 	   //build query
-	   $sql = "SELECT description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM supplies s, volunteer v, address a WHERE s.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND zipcode = '".$zipCode."';";
+	   $sql = "SELECT description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM supplies s, volunteer v, address a WHERE s.volunteer_id = v.volunteer_id AND v.address_id = a.address_id ".$postQuery;
    }
    else{  
 	   $sql = "SELECT description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM supplies s, volunteer v, address a WHERE s.volunteer_id = v.volunteer_id AND v.address_id = a.address_id;";
@@ -32,7 +43,7 @@
 	if($result)
 	{	
 	   //Build Result String
-	   $display_string = "<table>";
+	   $display_string = "<table width = 800 style=\"margin-top:10px; margin-left:20px;\">";
 	   $display_string .= "<tr>";
 	   $display_string .= "<th align=\"left\">supply</th>";
 	   $display_string .= "<th align=\"left\">contact</th>";

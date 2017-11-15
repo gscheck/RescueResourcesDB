@@ -15,23 +15,37 @@
 	
    
    // Retrieve data from Query String
-   $Activity = $_GET['Activity'];
-
-   if($Activity != "")
+   $fQuery = $_GET['fQuery'];
+echo $fQuery;
+   if($fQuery != "")
    {
+	   $queryParts = explode(";", $fQuery);
+	   $zipCode = $queryParts[0];
+	   $activity = $queryParts[1];
+	   $postQuery = "";
+	   
+	   if($zipCode != "")
+			$postQuery = "AND a.zipcode = '".$zipCode."' ";
+		
+	   if($activity != "" && $activity != "All")
+			$postQuery .= "AND s.name = '".$activity."'";
+	   
+	   $postQuery .= ";";
+
 	   //build query
-	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id AND s.name = '".$Activity."';";
+	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id ".$postQuery;
    }
    else{  
 	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND p.activities_id = s.activities_id AND v.address_id = a.address_id;";
    }
+   
    //Execute query
    $result = $conn->query($sql);;
 
 	if($result)
 	{	
 	   //Build Result String
-	   $display_string = "<table>";
+	   $display_string = "<table width = 800 style=\"margin-top:10px; margin-left:20px;\">";
 	   $display_string .= "<tr>";
 	   $display_string .= "<th align=\"left\">activity</th>";
 	   $display_string .= "<th align=\"left\">contact</th>";
