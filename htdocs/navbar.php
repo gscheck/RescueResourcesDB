@@ -10,6 +10,7 @@
 			<ul>
 			  <a href="index.php">Home</a>
 			  <a href="Volunteer.php">Volunteers</a>
+			  <a href="Veterinarian.php">Veterinarians</a>
 			  <a href="Supplies.php">Supplies</a>
 			  <a href="Activities.php">Activities</a>
 			  <a href="Contact.php">Contact</a>
