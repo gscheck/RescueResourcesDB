@@ -98,10 +98,11 @@ include_once('navbar.php');
                var lName = document.getElementById('lastName').value;
 			   var phoneNum = document.getElementById('phoneNum').value;
                var emailAddr = document.getElementById('emailAddr').value;
+			   var address = document.getElementById('address').value;
 			   var state = document.getElementById('state').value;
                var zipCode = document.getElementById('zipCode').value;
 			   
-               var volInfo = fName + " " + lName + "," + phoneNum + "," + emailAddr + "," + state + "," + zipCode;
+               var volInfo = fName + "~" + lName + "," + phoneNum + "," + emailAddr + "," + address + "," + state + "," + zipCode;
                var queryString =  "?volInfo=" + volInfo;
 
 			   ajaxRequest.open("GET", "addVolunteer.php" + queryString, true);
@@ -129,6 +130,10 @@ include_once('navbar.php');
 			<tr>
 				<td><label for="emailAddr" align = 'right'>Email:</label></td>
 				<td><input type = 'text' id = 'emailAddr' /></td>
+			</tr>
+			<tr>
+				<td><label for="address" align = 'right'>Address:</label></td>
+				<td><input type = 'text' id = 'address' /></td>
 			</tr>
 			<tr>
 				<td><label for="state" align = 'right'>State:</label></td>

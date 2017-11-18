@@ -133,9 +133,9 @@ include_once('navbar.php');
 					
                var fName = document.getElementById('firstName').value;
                var lName = document.getElementById('lastName').value;
-               var description = document.getElementById('description').value;
+               var supply = document.getElementById('supply').value;
 			   
-               var volInfo = fName + " " + lName + "," + description;
+               var volInfo = fName + " " + lName + "," + supply;
                var queryString =  "?volInfo=" + volInfo;
 
 			   ajaxRequest.open("GET", "addSupply.php" + queryString, true);

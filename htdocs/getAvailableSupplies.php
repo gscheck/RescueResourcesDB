@@ -14,7 +14,7 @@
 	}
 	
    
-	$sql = "SELECT DISTINCT description FROM supplies";
+	$sql = "SELECT DISTINCT name FROM supplies_type_lookup";
    
    //Execute query
    $result = $conn->query($sql);
@@ -31,7 +31,7 @@
 	   <?php
 	   while($row = $row = $result->fetch_assoc()) {
 		   ?>
-		  <option value="<?=$row["description"];?>"><?=$row["description"];?></option>
+		  <option value="<?=$row["name"];?>"><?=$row["name"];?></option>
 		  <?php
 	   }
 	   ?>

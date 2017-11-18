@@ -31,7 +31,7 @@
 	   
 	   //build query
 	   $sql = "INSERT INTO supplies (volunteer_id, description, storage_available__num) VALUES ((SELECT volunteer_id FROM volunteer WHERE first_name = '$fName' AND last_name = '$lName'),'$description', 1);";
-   
+   echo $sql;
 	   $result = $conn->query($sql);
 	   echo mysqli_error($conn);
 	   if($result)

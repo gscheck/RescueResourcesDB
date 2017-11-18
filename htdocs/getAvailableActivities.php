@@ -14,10 +14,10 @@
 	}
 	
    
-	$sql = "SELECT name FROM activities";
+	$sql = "SELECT name FROM activities_type_lookup";
    
    //Execute query
-   $result = $conn->query($sql);;
+   $result = $conn->query($sql);
 
 	if($result)
 	{	
@@ -29,7 +29,7 @@
 	   <td><select name="activity" id = "activity">
 	   <option value="All">All</option>
 	   <?php
-	   while($row = $row = $result->fetch_assoc()) {
+	   while($row = $result->fetch_assoc()) {
 		   ?>
 		  <option value="<?=$row["name"];?>"><?=$row["name"];?></option>
 		  <?php
