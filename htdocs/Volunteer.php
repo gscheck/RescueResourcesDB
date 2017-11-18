@@ -124,12 +124,12 @@ include_once('navbar.php');
 				<td><input type = 'text' id = 'lastName' /></td>
 			</tr>
 			<tr>
-				<td><label for="phoneNum" align = 'right'>Phone:</label></td>
-				<td><input type = 'text' id = 'phoneNum' /></td>
-			</tr>
-			<tr>
 				<td><label for="emailAddr" align = 'right'>Email:</label></td>
 				<td><input type = 'text' id = 'emailAddr' /></td>
+			</tr>
+			<tr>
+				<td><label for="phoneNum" align = 'right'>Phone:</label></td>
+				<td><input type = 'text' id = 'phoneNum' /></td>
 			</tr>
 			<tr>
 				<td><label for="address" align = 'right'>Address:</label></td>

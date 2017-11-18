@@ -21,7 +21,7 @@
    {
 	   
 	   $volInfo = mysqli_real_escape_string($conn, $volInfo);
-	   $nameParts = explode(" ",$volInfo);
+	   $nameParts = explode("~",$volInfo);
 	   $fName = $nameParts[0];
 	   
 	   $elements = explode(",",$nameParts[1]);
@@ -30,7 +30,7 @@
 	   $description = $elements[1]; 
 	   
 	   //build query
-	   $sql = "INSERT INTO supplies (volunteer_id, description, storage_available__num) VALUES ((SELECT volunteer_id FROM volunteer WHERE first_name = '$fName' AND last_name = '$lName'),'$description', 1);";
+	   $sql = "INSERT INTO perform (volunteer_id, activities_id) VALUES ((SELECT volunteer_id FROM volunteer WHERE first_name = '$fName' AND last_name = '$lName'),(SELECT activities_id FROM activities WHERE name = '$description'));";
    
 	   $result = $conn->query($sql);
 	   echo mysqli_error($conn);

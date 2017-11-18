@@ -57,7 +57,6 @@
 	   if($notFound)
 	   {
 		   $sql = "INSERT INTO address (address_line_1, phone, state, zipCode) VALUES ('$address', '$phone', '$state', $zipCode);";
-		   echo $sql;
 		   $result = $conn->query($sql);
 	   }
 	   
