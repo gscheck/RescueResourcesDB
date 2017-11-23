@@ -147,9 +147,9 @@ include_once('navbar.php');
       </script>
 		
       <form name = 'activityForm'>
-		 <h2>Activities</h2><br />
+		 <center><h2>Activities</h2></center><br />
 		 
-		<table style="margin-top:10px; margin-left:20px;">
+		<table style="width:50%; margin:0 auto 0 auto;">
 			<tr>
 				<td><label for="firstName" align = 'right'>First Name:</label></td>
 				<td><input type = 'text' id = 'firstName' /></td>

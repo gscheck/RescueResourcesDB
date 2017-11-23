@@ -8,6 +8,8 @@
  </head>
  
 <?php
+	include_once('navbar.php');
+
 	$servername = "localhost";
 	$username = "root";
 	$password = "Admin2017!";
@@ -106,9 +108,9 @@
 			}
      </script>			
       <form name = 'adminForm'>
-		 <h2>Edit Volunteer Information</h2><br />
+		 <center><h2>Edit Volunteer Information</h2></center><br />
 		 
-		<table style="margin-top:10px; margin-left:20px;">
+		<table style="width:50%; height:50%; margin:0 auto 0 auto;">
 			<tr>
 				<td><label for="firstName" align = 'right'>First Name:</label></td>
 				<td><input type = 'text' id = 'firstName' value = "<?=$fName;?>"/></td>
@@ -139,9 +141,9 @@
 			</tr>
 		</table><br />
 	
- 
+		<center>
 		<input type = 'button' onclick = 'submitChanges()' value = 'Submit'  style="margin-top:10px; margin-left:20px;"/>	
- 
+		<center>
 			
       </form>
       <div id = 'ajaxDiv'>Your result will display here</div>

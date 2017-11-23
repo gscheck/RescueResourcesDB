@@ -23,7 +23,7 @@
 	{	
 	   // Insert a new row in the table for each person returned
 	   ?>
-	   	<table width = 250 style="margin-top:10px; margin-left:20px;">
+	   	<table style="width:50%; margin:0 auto 0 auto;">
 			<tr>
 				<td><label for="activity" align = 'right'>Activity:</label></td>
 				<td><select name="activity" id = "activity">
@@ -39,8 +39,11 @@
 				</td>
 			</tr>
 	   </table>
+	   <center>
 	   	<input type = 'button' onclick = 'addActivity()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
         <input type = 'button' onclick = 'listActivities()' value = 'List'/>
+		<input type = 'button' onclick = 'deleteActivities()' value = 'Delete'/>
+		</center>
 	   <?php
 	}
 	else

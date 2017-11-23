@@ -121,9 +121,9 @@ include_once('navbar.php');
       </script>
 		
       <form name = 'adminForm'>
-		 <h2>Veterinarians</h2><br />
+		 <center><h2>Veterinarians</h2></center><br />
 		 
-		<table style="margin-top:10px; margin-left:20px;">
+		<table style="width:50%; height:50%; margin:0 auto 0 auto;">
 			<tr>
 				<td><label for="firstName" align = 'right'>First Name:</label></td>
 				<td><input type = 'text' id = 'firstName' /></td>
@@ -154,11 +154,12 @@ include_once('navbar.php');
 			</tr>
 		</table><br />
 	
- 
+		<center>
 		<input type = 'button' onclick = 'addVeterinarian()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
         <input type = 'button' onclick = 'listVeterinarians()' value = 'List'/>
 		<input type = 'button' onclick = 'editVeterinarian()' value = 'Edit'/>	
 		<input type = 'button' onclick = 'deleteVeterinarian()' value = 'Delete'/>
+		</center>
       </form>
       
       <div id = 'ajaxDiv'>Your result will display here</div>

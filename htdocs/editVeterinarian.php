@@ -8,6 +8,7 @@
  </head>
  
 <?php
+	include_once('navbar.php');
 	$servername = "localhost";
 	$username = "root";
 	$password = "Admin2017!";

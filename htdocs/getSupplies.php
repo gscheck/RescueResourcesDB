@@ -62,7 +62,6 @@
 	   }
 	   
 	   $display_string .= "</table><br />";
-	   $display_string .= "<input type = \"button\" onclick = \"editVolunteers()\" value = \"Edit\"/>";
 	   echo $display_string;
 	}
 	else

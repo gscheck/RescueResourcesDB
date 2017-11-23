@@ -14,7 +14,7 @@ include_once('navbar.php');
 
 <body>
       <form name = 'aboutForm'>
-		<h2>&nbsp;&nbsp;&nbsp;Key To Happiness Rescue</h2><br />
+		<center><h2>Key To Happiness Rescue</h2></center><br />
 		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:Keytohappinessrescue@gmail.com </p>
 		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website:http://www.kthr.org/ </p>
 

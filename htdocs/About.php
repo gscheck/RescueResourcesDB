@@ -14,7 +14,7 @@ include_once('navbar.php');
 
 <body>
       <form name = 'aboutForm'>
-		 <h2>About</h2><br />
+		 <center><h2>About</h2></center><br />
 		 
 		<p>&nbsp;&nbsp;This application intended to keep track of resources required for animal rescue.</p>
 			

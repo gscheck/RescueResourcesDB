@@ -123,9 +123,9 @@ include_once('navbar.php');
       </script>
 		
       <form name = 'adminForm'>
-		 <h2>Volunteer</h2><br />
-		 
-		<table style="margin-top:10px; margin-left:20px;">
+		 <center><h2>Volunteer</h2></center><br />
+		<div> 
+		<center><table style="width:50%; height:50%; margin:0 auto 0 auto;">
 			<tr>
 				<td><label for="firstName" align = 'right'>First Name:</label></td>
 				<td><input type = 'text' id = 'firstName' /></td>
@@ -154,14 +154,14 @@ include_once('navbar.php');
 				<td><label for="zipCode" align = 'right'>Zip Code:</label></td>
 				<td><input type = 'text' id = 'zipCode' /></td>
 			</tr>
-		</table><br />
+		</table></div><br />
 	
- 
+		<center>
 		<input type = 'button' onclick = 'addVolunteer()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
         <input type = 'button' onclick = 'listVolunteers()' value = 'List'/>
 		<input type = 'button' onclick = 'editVolunteer()' value = 'Edit'/>
 		<input type = 'button' onclick = 'deleteVolunteer()' value = 'Delete'/>
-			
+		</center>	
       </form>
       
       <div id = 'ajaxDiv'>Your result will display here</div>
