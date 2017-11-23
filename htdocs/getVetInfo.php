@@ -53,7 +53,6 @@
 	   //Build Result String
 	   $display_string = "<table width = 800 style=\"margin-top:10px; margin-left:20px;\">";
 	   $display_string .= "<tr>";
-	   $display_string .= "<th align=\"left\">sel</th>";
 	   $display_string .= "<th align=\"left\">name</th>";
 	   $display_string .= "<th align=\"left\">phone</th>";
 	   $display_string .= "<th align=\"left\">email</th>";
@@ -62,7 +61,6 @@
 	   // Insert a new row in the table for each person returned
 	   while($row = $row = $result->fetch_assoc()) {
 		  $display_string .= "<tr>";
-		  $display_string .= "<td><input type=\"checkbox\" name=\"volSel\" value=\"checked\" /></td>";
 		  $display_string .= "<td>$row[name]</td>";
 		  $display_string .= "<td>$row[phone]</td>";
 		  $display_string .= "<td>$row[email]</td>";
@@ -70,7 +68,7 @@
 	   }
 	   
 	   $display_string .= "</table><br />";
-	   $display_string .= "<input type = \"button\" onclick = \"editVolunteers()\" value = \"Edit\"/>";
+
 	   echo $display_string;
 	}
 	else

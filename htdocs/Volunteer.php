@@ -51,13 +51,24 @@ include_once('navbar.php');
 					
                var fName = document.getElementById('firstName').value;
                var lName = document.getElementById('lastName').value;
-               var fullName = fName + " " + lName;
+               var fullName = fName + "~" + lName;
+			   var state = document.getElementById('state').value;
 			   var zipCode = document.getElementById('zipCode').value;
-               var queryString =  "?fQuery=" + fullName + ";" + zipCode;
+               var queryString =  "?fQuery=" + fullName + ";" + state + ";" + zipCode;
 
 			   ajaxRequest.open("GET", "getVolunteerInfo.php" + queryString, true);
                ajaxRequest.send(null); 
             }
+			
+			function editVolunteer(){
+               var fName = document.getElementById('firstName').value;
+               var lName = document.getElementById('lastName').value;
+				
+				var volInfo = fName + "~" + lName;
+				volInfo =  "?volInfo=" + volInfo;
+				window.location.href = "editVolunteer.php" + volInfo;
+				//window.location.href = "editVolunteer.php";
+			}
 			
             function addVolunteer(){
 			   var ajaxRequest;  // The variable that makes Ajax possible!
@@ -148,6 +159,8 @@ include_once('navbar.php');
  
 		<input type = 'button' onclick = 'addVolunteer()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
         <input type = 'button' onclick = 'listVolunteers()' value = 'List'/>
+		<input type = 'button' onclick = 'editVolunteer()' value = 'Edit'/>
+		<input type = 'button' onclick = 'deleteVolunteer()' value = 'Delete'/>
 			
       </form>
       

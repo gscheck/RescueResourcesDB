@@ -59,6 +59,15 @@ include_once('navbar.php');
                ajaxRequest.send(null); 
             }
 			
+			function editVeterinarian(){
+               var fName = document.getElementById('firstName').value;
+               var lName = document.getElementById('lastName').value;
+				
+				var vetInfo = fName + "~" + lName;
+				vetInfo =  "?volInfo=" + vetInfo;
+				window.location.href = "editVeterinarian.php" + vetInfo;
+			}
+			
             function addVeterinarian(){
 			   var ajaxRequest;  // The variable that makes Ajax possible!
                
@@ -148,7 +157,8 @@ include_once('navbar.php');
  
 		<input type = 'button' onclick = 'addVeterinarian()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
         <input type = 'button' onclick = 'listVeterinarians()' value = 'List'/>
-			
+		<input type = 'button' onclick = 'editVeterinarian()' value = 'Edit'/>	
+		<input type = 'button' onclick = 'deleteVeterinarian()' value = 'Delete'/>
       </form>
       
       <div id = 'ajaxDiv'>Your result will display here</div>
