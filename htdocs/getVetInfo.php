@@ -27,10 +27,10 @@
 	   $zipCode = $queryParts[1];
 	   $postQuery = "";
 	   
-	   echo $postQuery;
+	   $postQuery .=  "WHERE (void IS NULL || void != true) ";
 	   
 	   if($fName != "")
-	      $postQuery .=  "WHERE first_name = '".$fName."' AND last_name = '".$lName."' ";
+	      $postQuery .=  "AND first_name = '".$fName."' AND last_name = '".$lName."' ";
 	   
 	   if($zipCode != "")
 		  $postQuery .= "AND zipcode = '".$zipCode."' ";
