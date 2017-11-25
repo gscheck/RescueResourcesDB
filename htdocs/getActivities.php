@@ -1,7 +1,7 @@
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "Admin2017!";
+	#$servername = "localhost";
+	#$username = "root";
+	#$password = "Admin2017!";
 
 	// Create connection
 	$conn = mysqli_connect("127.0.0.1", "dbRead", "db_read", "animal_rescue_resources");
@@ -33,10 +33,10 @@ echo $fQuery;
 	   $postQuery .= ";";
 
 	   //build query
-	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id ".$postQuery;
+	   $sql = "SELECT s.activities_name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id ".$postQuery;
    }
    else{  
-	   $sql = "SELECT s.name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND p.activities_id = s.activities_id AND v.address_id = a.address_id;";
+	   $sql = "SELECT s.activities_name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND p.activities_id = s.activities_id AND v.address_id = a.address_id;";
    }
    
    //Execute query
