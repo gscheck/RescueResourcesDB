@@ -44,7 +44,7 @@ include_once('navbar.php');
 					
                ajaxRequest.onreadystatechange = function(){
                   if(ajaxRequest.readyState == 4){
-                     var ajaxDisplay = document.getElementById('transportDivDiv');
+                     var ajaxDisplay = document.getElementById('transportDiv');
                      ajaxDisplay.innerHTML = ajaxRequest.responseText;
                   }
                }
@@ -54,7 +54,7 @@ include_once('navbar.php');
                ajaxRequest.send(null); 
 			}
 			
-			function listActivities(){
+			function listTransports(){
 			   var ajaxRequest;  // The variable that makes Ajax possible!
                
                try {
@@ -90,15 +90,16 @@ include_once('navbar.php');
                // server script.
 
  			   var zipCode = document.getElementById('zipCode').value;
-               var Activity = document.getElementById('activity').value;
+               var size = document.getElementById('vehicleSize').value;
+			   var type = document.getElementById('vehicleType').value;
 
-               var queryString =  "?fQuery=" + zipCode + ";" + Activity;			   
+               var queryString =  "?fQuery=" + zipCode + "," + size + "," + type;			   
 			   
-			   ajaxRequest.open("GET", "getActivities.php" + queryString, true);
+			   ajaxRequest.open("GET", "getTransports.php" + queryString, true);
                ajaxRequest.send(null); 
             }
 			
-            function addActivity(){	   
+            function addTransport(){	   
 			   var ajaxRequest;  // The variable that makes Ajax possible!
                
                try {
@@ -133,14 +134,16 @@ include_once('navbar.php');
 			   // Now get the value from user and pass it to
 			   // server script.
 					
-			   var fName = document.getElementById('firstName').value;
-			   var lName = document.getElementById('lastName').value;
-			   var activity = document.getElementById('activity').value;
-			   
-			   var volInfo = fName + "~" + lName + "," + activity;
+			   var vol = document.getElementById('transportVol').value;
+			   var vType = document.getElementById('vehicleType').value;
+			   var vSize = document.getElementById('vehicleSize').value;
+			   var maxDist = document.getElementById('maxDistance').value;
+			   var avail = document.getElementById('availability').value;
+			   var aType = document.getElementById('animalType').value;
+			   var volInfo = vol + "," + vType + "," + vSize+ "," + maxDist + "," + avail + "," + aType;
 			   var queryString =  "?volInfo=" + volInfo;
 
-			   ajaxRequest.open("GET", "addActivity.php" + queryString, true);
+			   ajaxRequest.open("GET", "addTransport.php" + queryString, true);
 			   ajaxRequest.send(null); 
             }
          //-->
@@ -149,14 +152,9 @@ include_once('navbar.php');
       <form name = 'activityForm'>
 		 <center><h2>Transport</h2></center><br />
 		 
-		<table style="width:50%; margin:0 auto 0 auto;">
+		<table style="width:40%; margin:0 auto 0 auto;">
 			<tr>
-				<td><label for="firstName" align = 'right'>First Name:</label></td>
-				<td><input type = 'text' id = 'firstName' /></td>
-			</tr>
-			<tr>
-				<td><label for="lastName" align = 'right'>Last Name:</label></td>
-				<td><input type = 'text' id = 'lastName' /></td>
+				<div id = 'transportDiv'></div>
 			</tr>
 			<tr>
 				<td><label for="zipCode" align = 'right'>Zip Code:</label></td>
@@ -179,8 +177,11 @@ include_once('navbar.php');
 		</table><br />
 
       </form>
-      
-	  <div id = 'transportDiv'></div>
+      	   <center>
+	   	<input type = 'button' onclick = 'addTransport()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
+        <input type = 'button' onclick = 'listTransports()' value = 'List'/>
+		<input type = 'button' onclick = 'deleteTransport()' value = 'Delete'/>
+		</center>
       <div id = 'ajaxDiv'>Your result will display here</div>
    </body>
 </html>

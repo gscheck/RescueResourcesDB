@@ -81,7 +81,7 @@
 		}
 		else
 		{
-			die(mysqli_error($conn));    // Thanks to Pekka for pointing this out.
+			die(mysqli_error($conn));   
 		}
 	   mysqli_close($conn);
    }

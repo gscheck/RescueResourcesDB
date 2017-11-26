@@ -14,7 +14,9 @@
 	}
 	
    
-	$sql = "SELECT name FROM activities_type_lookup";
+	$sql = "SELECT CONCAT(first_name, ' ', last_name) name 
+				FROM volunteer 
+			WHERE volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport' ));";
    
    //Execute query
    $result = $conn->query($sql);
@@ -23,11 +25,10 @@
 	{	
 	   // Insert a new row in the table for each person returned
 	   ?>
-	   	<table style="width:50%; margin:0 auto 0 auto;">
+	   	<table style="width:40%; margin:0 auto 0 auto;">
 			<tr>
-				<td><label for="activity" align = 'right'>Activity:</label></td>
-				<td><select name="activity" id = "activity">
-				   <option value="All">All</option>
+				<td><label for="transportVol" align = 'right'>Volunteer:</label></td>
+				<td><select name="transportVol" id = "transportVol">
 				   <?php
 				   while($row = $result->fetch_assoc()) {
 					   ?>
@@ -39,11 +40,37 @@
 				</td>
 			</tr>
 	   </table>
-	   <center>
-	   	<input type = 'button' onclick = 'addTransport()' value = 'Add'  style="margin-top:10px; margin-left:20px;"/>	
-        <input type = 'button' onclick = 'listTransports()' value = 'List'/>
-		<input type = 'button' onclick = 'deleteTransport()' value = 'Delete'/>
-		</center>
+
+	   <?php
+	}
+	else
+	{
+		echo "no data";
+	}
+	
+		$sql = "SELECT species, size FROM animal_type";
+   
+   //Execute query
+   $result = $conn->query($sql);
+
+	if($result)
+	{	
+	   // Insert a new row in the table for each person returned
+	   ?>
+	   <table style="width:40%; margin:0 auto 0 auto;">
+	   <tr>
+	   <td><label for="animalType" align = 'right'>Animal Type:</label></td>
+		<td><select name="animalType" id = "animalType">
+		   <?php
+		   while($row = $result->fetch_assoc()) {
+			   ?>
+			  <option value="<?=$row["size"]." ".$row["species"];?>"><?=$row["size"]." ".$row["species"];?></option>
+			  <?php
+		   }
+		   ?>
+		</select></td>
+	</tr>
+	</table>
 	   <?php
 	}
 	else
