@@ -28,7 +28,7 @@
 	   $zipCode = $queryParts[2];
 	   $postQuery = "";
 	   
-	   $postQuery .=  "WHERE (void IS NULL || void != true) ";
+	   $postQuery .=  "WHERE (v.void IS NULL || v.void != true) ";
 	   
 	   if($fName != "")
 	      $postQuery .=  "AND first_name = '".$fName."' AND last_name = '".$lName."' ";
@@ -45,6 +45,7 @@
    else{
 	   $sql = "SELECT CONCAT(first_name, ' ', last_name) as name, phone, zipCode, email, state FROM volunteer v INNER JOIN address addr ON addr.address_id = v.address_id";
    }
+   
    
    //Execute query
    $result = $conn->query($sql);

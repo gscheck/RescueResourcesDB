@@ -27,6 +27,7 @@
 	   <tr>
 	   <td><label for="animalType" align = 'right'>Animal Type:</label></td>
 		<td   align = "right"><select name="animalType" id = "animalType">
+		   <option value="All">All</option>
 		   <?php
 		   while($row = $result->fetch_assoc()) {
 			   ?>

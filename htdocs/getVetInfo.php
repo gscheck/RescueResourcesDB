@@ -27,7 +27,7 @@
 	   $zipCode = $queryParts[1];
 	   $postQuery = "";
 	   
-	   $postQuery .=  "WHERE (void IS NULL || void != true) ";
+	   $postQuery .=  "WHERE (v.void IS NULL || v.void != true) ";
 	   
 	   if($fName != "")
 	      $postQuery .=  "AND first_name = '".$fName."' AND last_name = '".$lName."' ";

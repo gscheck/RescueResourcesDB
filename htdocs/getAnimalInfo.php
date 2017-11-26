@@ -17,13 +17,13 @@
    $aType = $_GET['aInfo'];
    $fName = "";
 
-   if($aType != "")
+   if($aType != "" && $aType != "All")
    {
 	   //build query
 	   $sql = "SELECT name, sex, age, transport_quarantine, medical_needs FROM animal WHERE  (void is null || void = false) AND animal_type_id = (SELECT animal_type_id FROM animal_type WHERE CONCAT(size, ' ', species) = '$aType' );";
    }
    else{
-	   $sql = "SELECT * FROM animal WHERE void is null || void = false;";
+	   $sql = "SELECT * FROM animal a, animal_type at WHERE a.animal_type_id = at.animal_type_id AND (void is null || void = false);";
    }
    
    //Execute query
@@ -47,7 +47,10 @@
 	   while($row = $row = $result->fetch_assoc()) {
 		  $display_string .= "<tr>";
 		  $display_string .= "<td>$row[name]</td>";
-		  $display_string .= "<td>$aType</td>";
+		  if($aType != "" && $aType != "All")
+			  $display_string .= "<td>$aType</td>";
+		  else
+			$display_string .= "<td>$row[size] $row[species]</td>";
 		  $display_string .= "<td>$row[sex]</td>";
 		  $display_string .= "<td>$row[age]</td>";
 		  $display_string .= "<td>$row[transport_quarantine]</td>";
