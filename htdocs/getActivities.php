@@ -16,7 +16,7 @@
    
    // Retrieve data from Query String
    $fQuery = $_GET['fQuery'];
-echo $fQuery;
+
    if($fQuery != "")
    {
 	   $queryParts = explode(";", $fQuery);

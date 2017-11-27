@@ -46,7 +46,7 @@
 	}
 	
 	
-	$sql = "SELECT CONCAT(first_name, ' ' , last_name) as name FROM veterinarian;";
+	$sql = "SELECT CONCAT(first_name, ' ' , last_name) as name FROM veterinarian WHERE (void is NULL || void != true);";
    
    //Execute query
    $result = $conn->query($sql);
@@ -78,7 +78,7 @@
 		echo "no data";
 	}
 	
-	$sql = "SELECT CONCAT(first_name, ' ' , last_name) as name FROM volunteer;";
+	$sql = "SELECT CONCAT(first_name, ' ' , last_name) as name FROM volunteer WHERE (void is NULL || void != true);";
    
    //Execute query
    $result = $conn->query($sql);
