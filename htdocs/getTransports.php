@@ -23,29 +23,22 @@
 	   $zipCode = $queryParts[0];
 	   $size = $queryParts[1];
 	   $type = $queryParts[2];
+	   $aType = $queryParts[3];
 	   $postQuery = "";
 
 	   if($zipCode != "")
-		   //build query
-		   $sql = "SELECT *
-				FROM transport t
-				JOIN volunteer v ON t.volunteer_id = v.volunteer_id
-				JOIN address a ON v.address_id = a.address_id
-				WHERE v.volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport'))
-				AND v.address_id IN (SELECT address_id FROM address WHERE zipcode = '$zipCode');";
-		else
-			$sql = "SELECT *
-				FROM transport t
-				JOIN volunteer v ON t.volunteer_id = v.volunteer_id
-				JOIN address a ON v.address_id = a.address_id
-				WHERE v.volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport'));";
-   
-   }
-   else{  
-	   	   $sql = "SELECT *
-				FROM transport t
-				JOIN volunteer v ON t.volunteer_id = v.volunteer_id
-				WHERE v.volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport'));";
+		   $postQuery = "AND v.address_id IN (SELECT address_id FROM address WHERE zipcode = '$zipCode') ";
+	   
+	   if($aType != "")
+			$postQuery .= "AND t.animal_type_id = (SELECT animal_type_id FROM animal_type WHERE CONCAT(size, ' ', species) = '$aType') ";
+		   
+	   //build query
+	   $sql = "SELECT *
+			FROM transport t
+			JOIN volunteer v ON t.volunteer_id = v.volunteer_id
+			JOIN address a ON v.address_id = a.address_id
+			WHERE v.volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport')) ".$postQuery;
+
    }
    
    //Execute query

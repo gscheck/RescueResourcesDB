@@ -92,8 +92,9 @@ include_once('navbar.php');
  			   var zipCode = document.getElementById('zipCode').value;
                var size = document.getElementById('vehicleSize').value;
 			   var type = document.getElementById('vehicleType').value;
-
-               var queryString =  "?fQuery=" + zipCode + "," + size + "," + type;			   
+			   var aType = document.getElementById('animalType').value;
+			   
+               var queryString =  "?fQuery=" + zipCode + "," + size + "," + type + "," + aType;			   
 			   
 			   ajaxRequest.open("GET", "getTransports.php" + queryString, true);
                ajaxRequest.send(null); 
