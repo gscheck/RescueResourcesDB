@@ -28,15 +28,15 @@
 			$postQuery = "AND a.zipcode = '".$zipCode."' ";
 		
 	   if($activity != "" && $activity != "All")
-			$postQuery .= "AND s.name = '".$activity."'";
+			$postQuery .= "AND s.activities_name = '".$activity."'";
 	   
 	   $postQuery .= ";";
 
 	   //build query
-	   $sql = "SELECT s.activities_name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id ".$postQuery;
+	   $sql = "SELECT s.activities_name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND v.address_id = a.address_id AND p.activities_id = s.activities_id AND v.void is NULL ".$postQuery;
    }
    else{  
-	   $sql = "SELECT s.activities_name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND p.activities_id = s.activities_id AND v.address_id = a.address_id;";
+	   $sql = "SELECT s.activities_name as description, CONCAT(first_name, ' ', last_name) as name, email, phone FROM perform p, activities s, volunteer v, address a WHERE p.volunteer_id = v.volunteer_id AND p.activities_id = s.activities_id AND v.address_id = a.address_id and v.void is NULL;";
    }
    
    //Execute query

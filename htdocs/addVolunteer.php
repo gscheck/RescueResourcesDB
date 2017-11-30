@@ -38,47 +38,83 @@
 	   //$lName = mysql_real_escape_string($lName);
 	   
 	   //build query
-	   
-	   $sql = "SELECT address_id FROM address WHERE phone = '$phone' AND state = '$state' AND zipcode = '$zipCode';";
-	   
-	   $result = $conn->query($sql);
-	   
-	   $notFound = true;
-	   
-	   if($result)
+	   if(strlen($zipCode) == 5)
 	   {
-		   $row = $result->fetch_assoc();
-		   $address_id = $row["address_id"];
-		   if($address_id != '')
-			   $notFound = false;
+	   
+		   if(strlen($state) == 2)
+		   {
+			   $sql = "SELECT address_id FROM address WHERE phone = '$phone' AND state = '$state' AND zipcode = '$zipCode';";
+			   
+			   $result = $conn->query($sql);
+			   
+			   $notFound = true;
+			   
+			   if($result)
+			   {
+				   $row = $result->fetch_assoc();
+				   $address_id = $row["address_id"];
+				   if($address_id != '')
+					   $notFound = false;
+			   }
+			   
+			   
+			   if($notFound)
+			   {
+				   $sql = "INSERT INTO address (address_line_1, phone, state, zipCode) VALUES ('$address', '$phone', '$state', $zipCode);";
+				   
+				   $result = $conn->query($sql);
+			   }
+			   
+			   $sql = "SELECT * FROM volunteer WHERE first_name = '$fName' AND last_name = '$lName' AND void is NULL;";
+			   $result = $conn->query($sql);
+			   
+			   $notFound = true;
+			   
+			   if($result)
+			   {
+				   $row = $result->fetch_assoc();
+				   $fsName = $row["first_name"];
+				   if($fsName != '')
+					  $notFound = false;
+				  
+				   if($notFound == false)
+				   {   
+						echo "Volunteer exists.";
+				   }
+			   }
+			   
+			   if($notFound == true)
+			   {
+
+				   $sql = "SELECT address_id FROM address WHERE phone = '$phone' AND state = '$state' AND zipcode = $zipCode;";
+				   $result = $conn->query($sql);
+				   
+				   $row = $result->fetch_assoc();
+				   $address_id = $row["address_id"];
+				   
+				   $sql = "INSERT INTO volunteer (address_id, first_name, last_name, email, number_of_kids, housing_sattus, yard_access, length_of_stay) VALUES ('$address_id', '$fName', '$lName', '$email', 0, 'own/house', 'yes', 'two weeks');";
+				   
+				   
+				   $result = $conn->query($sql);
+				   echo mysqli_error($conn);
+				   if($result)
+					{
+						echo "Success!";
+					}
+					else
+					{
+						die(mysqli_error($conn)); 
+					}
+				   
+			   }
+		   }
+		   else{
+				echo "State can only be two characters.";
+		   }
 	   }
-	   
-	   
-	   if($notFound)
-	   {
-		   $sql = "INSERT INTO address (address_line_1, phone, state, zipCode) VALUES ('$address', '$phone', '$state', $zipCode);";
-		   $result = $conn->query($sql);
+	   else{
+			echo "Zip code should be five characters.";
 	   }
-	   
-	   $sql = "SELECT address_id FROM address WHERE phone = '$phone' AND state = '$state' AND zipcode = $zipCode;";
-	   $result = $conn->query($sql);
-	   
-	   $row = $result->fetch_assoc();
-	   $address_id = $row["address_id"];
-	   
-	   $sql = "INSERT INTO volunteer (address_id, first_name, last_name, email, number_of_kids, housing_sattus, yard_access, length_of_stay) VALUES ('$address_id', '$fName', '$lName', '$email', 0, 'own/house', 'yes', 'two weeks');";
-	   
-	   
-	   $result = $conn->query($sql);
-	   echo mysqli_error($conn);
-	   if($result)
-		{
-			echo "Success!";
-		}
-		else
-		{
-			die(mysqli_error($conn));    // Thanks to Pekka for pointing this out.
-		}
 	   mysqli_close($conn);
    }
  

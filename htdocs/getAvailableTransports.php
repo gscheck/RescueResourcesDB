@@ -16,7 +16,7 @@
    
 	$sql = "SELECT CONCAT(first_name, ' ', last_name) name 
 				FROM volunteer 
-			WHERE volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport' ));";
+			WHERE volunteer_id IN (SELECT volunteer_id FROM perform WHERE activities_id = (SELECT activities_id FROM activities WHERE activities_name = 'transport' ) AND void is NULL);";
    
    //Execute query
    $result = $conn->query($sql);

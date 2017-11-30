@@ -30,7 +30,7 @@
 	   $description = $elements[1]; 
 	   
 	   //build query
-	   $sql = "INSERT INTO perform (volunteer_id, activities_id) VALUES ((SELECT volunteer_id FROM volunteer WHERE first_name = '$fName' AND last_name = '$lName'),(SELECT activities_id FROM activities WHERE name = '$description'));";
+	   $sql = "INSERT INTO perform (volunteer_id, activities_id) VALUES ((SELECT volunteer_id FROM volunteer WHERE first_name = '$fName' AND last_name = '$lName'),(SELECT activities_id FROM activities WHERE activities_name = '$description'));";
    
 	   $result = $conn->query($sql);
 	   echo mysqli_error($conn);
@@ -40,7 +40,7 @@
 		}
 		else
 		{
-			die(mysqli_error($conn));    // Thanks to Pekka for pointing this out.
+			die(mysqli_error($conn));
 		}
 	   mysqli_close($conn);
    }
